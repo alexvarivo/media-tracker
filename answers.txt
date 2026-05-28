@@ -1,0 +1,23 @@
+a. What was the hardest part?
+Getting the filter and sort to work together without messing up the actual stored data. 
+I had to think about the difference between the raw list and what gets displayed.
+
+b. What would you improve with another hour?
+I'd add a delete button on each card. Right now once something is added you're stuck with it.
+I'd also probably clean up the styling a bit.
+
+c. Did you use AI tools? If so, how?
+Yes, I used Claude for some of the more tedious parts like writing out the localStorage 
+boilerplate and the sort comparator functions. The logic and structure I figured out myself.
+
+d. One specific design decision:
+I kept everything in one file (App.vue) instead of breaking it into separate components. 
+For something this small it felt like overkill to split it up.
+
+e. One specific tradeoff:
+localStorage is easy but it means your data is stuck on one device. 
+A real backend would fix that but was way out of scope here.
+
+f. One known limitation or bug:
+No way to delete or edit items once they're added. If you mistype something you have 
+to clear your browser storage to start over.

@@ -1,5 +1,24 @@
-# Vue 3 + Vite
+# Media Tracker
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A simple web app to keep track of media you've watched, read, or played.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## How to Run
+
+1. Clone the repo
+2. Run `npm install`
+3. Run `npm run dev`
+4. Open http://localhost:5173
+
+## Features
+
+- Add items with a title, type, rating, status, and notes
+- All items show up as cards below the form
+- Filter by media type
+- Sort by rating or title
+- Data saves to localStorage so it sticks around after refresh
+
+## What I'd Add Next
+
+- A delete button on each card
+- Search by title
+- Some kind of summary at the top (total items, average rating, etc.)
