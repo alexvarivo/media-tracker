@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const mediaItems = ref([])
+const mediaItems = ref(JSON.parse(localStorage.getItem('mediaItems') || '[]'))
 
 const title = ref('')
 const type = ref('Book')
@@ -20,6 +20,8 @@ function addMedia() {
   }
 
   mediaItems.value.push(newItem)
+  localStorage.setItem('mediaItems', JSON.stringify(mediaItems.value))
+
 
   title.value = ''
   type.value = 'Book'
