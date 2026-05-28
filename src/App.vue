@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const mediaItems = ref(JSON.parse(localStorage.getItem('mediaItems') || '[]'))
 
@@ -8,6 +8,27 @@ const type = ref('Book')
 const rating = ref(5)
 const status = ref('In Progress')
 const notes = ref('')
+
+const filterType = ref('All')
+const sortBy = ref('none')
+
+const filteredItems = computed(() => {
+  let items = mediaItems.value
+
+  if (filterType.value !== 'All') {
+    items = items.filter(item => item.type === filterType.value)
+  }
+
+  if (sortBy.value === 'rating-high') {
+    items = [...items].sort((a, b) => b.rating - a.rating)
+  } else if (sortBy.value === 'rating-low') {
+    items = [...items].sort((a, b) => a.rating - b.rating)
+  } else if (sortBy.value === 'title') {
+    items = [...items].sort((a, b) => a.title.localeCompare(b.title))
+  }
+
+  return items
+})
 
 function addMedia() {
   const newItem = {
@@ -79,10 +100,27 @@ function addMedia() {
 
       <button type="submit">Add Media</button>
     </form>
+    <div class="filters">
+      <select v-model="filterType">
+        <option>All</option>
+        <option>Book</option>
+        <option>Movie</option>
+        <option>TV Show</option>
+        <option>Anime</option>
+        <option>Game</option>
+      </select>
+
+      <select v-model="sortBy">
+        <option value="none">Sort by...</option>
+        <option value="rating-high">Rating: High to Low</option>
+        <option value="rating-low">Rating: Low to High</option>
+        <option value="title">Title A-Z</option>
+      </select>
+    </div>
     <div class="media-list">
       <div
         class="media-card"
-        v-for="item in mediaItems"
+        v-for="item in filteredItems"
         :key="item.id"
       >
         <h2>{{ item.title }}</h2>
@@ -149,5 +187,11 @@ button {
 .media-card h2 {
   color: #222;
   margin-top: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 </style>
